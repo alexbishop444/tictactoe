@@ -88,9 +88,6 @@ public class Board {
                 (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') || (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O')
         ) {
             isWin = true;
-            if (isWin) {
-                System.out.println("Player 2 is the winner");
-            }
         }
         return isWin;
     }
@@ -135,9 +132,6 @@ public class Board {
         if(tester.size() >= 1) {
             isDraw = false;
         }
-        if(isDraw) {
-            System.out.println("It's a draw");
-        }
 
         return isDraw;
     }
@@ -147,12 +141,19 @@ public class Board {
         boolean gameover = false;
         isDraw();
         if (playerYWin()) {
-            System.out.println("Player two wins!");
             gameover = true;
+//            printBoard();
+            System.out.println("Player two wins!");
         }
         if (playerXWin()) {
-            System.out.println("Player one wins!");
             gameover = true;
+//            printBoard();
+            System.out.println("Player one wins!");
+        }
+        if (isDraw()) {
+            gameover = true;
+//            printBoard();
+            System.out.println("It's a draw!!");
         }
         return gameover;
     }
