@@ -24,7 +24,7 @@ public class Main {
                     board.placeMarkX(xInputPlayer1, yInputPlayer1);
                     turn = true;
                 } else {
-                    System.out.println("Invalid input, try again!");
+                    System.out.println("Invalid input, try again!!!");
                 }
             }
             board.printBoard();
