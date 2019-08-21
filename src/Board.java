@@ -157,6 +157,16 @@ public class Board {
         }
         return gameover;
     }
+
+    public boolean validateInput(char[] input) {
+        boolean validInput;
+        if ((input.length == 2) && (Character.isDigit(input[0]) && Character.isDigit(input[1]))) {
+            validInput = true;
+        } else {
+            validInput = false;
+        }
+        return validInput;
+    }
 }
 
 
