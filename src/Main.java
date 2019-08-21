@@ -22,12 +22,12 @@ public class Main {
                     int xInputPlayer1 = Character.getNumericValue(player1Input2[0]);
                     int yInputPlayer1 = Character.getNumericValue(player1Input2[1]);
                     board.placeMarkX(xInputPlayer1, yInputPlayer1);
+                    board.printBoard();
                     turn = true;
                 } else {
                     System.out.println("Invalid input, try again!!!");
                 }
             }
-            board.printBoard();
             if (board.gameState()) {
                 break;
             }
@@ -39,6 +39,7 @@ public class Main {
                     int xInputPlayer2 = Character.getNumericValue(player2Input2[0]);
                     int yInputPlayer2 = Character.getNumericValue(player2Input2[1]);
                     board.placeMarkY(xInputPlayer2, yInputPlayer2);
+                    board.printBoard();
                     turn = false;
                 } else {
                     System.out.println("Invalid input, try again");
