@@ -10,6 +10,7 @@ public class Board {
     char truePlayerMark;
     char falsePlayerMark;
     boolean player;
+    char blankChar = '.';
 
     public Board() {
         board = new char[3][3];
@@ -143,19 +144,86 @@ public class Board {
         return isDraw;
     }
 
+    private boolean horizontal() {
+        for(int i=0;i < board.length; i++) {
+            if(IsAllEqual(board[i]))
+                return true;
+        }
+        return false;
+    }
+
+    private boolean diagonolLeftToRight() {
+        char[] array = new char[board.length];
+        for(int i=0;i < board.length; i++) {
+                array[i] = board[i][i];
+        }
+        if(IsAllEqual(array)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean diagonolRightToLeft() {
+        char[] array = new char[board.length];
+        int goHere = board.length -1;
+        int start = -1;
+        for(int i=goHere;i >= 0; i--) {
+            start++;
+            array[i] = board[i][start];
+        }
+        if(IsAllEqual(array)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean vertical() {
+        char[] array = new char[board.length];
+        for(int i=0;i < board.length; i++) {
+            for (int j = 0; j <board.length ; j++) {
+                array[i] = board[j][i];
+            }
+            if(IsAllEqual(array)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean IsAllEqual(char[] line)
+    {
+        for (int i=1; i < line.length; i++){
+            char currentChar = line[i];
+            if (currentChar == blankChar || line[0] != currentChar){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
 
     public boolean gameState() {
         boolean gameover = false;
         isDraw();
-        if (playerYWin()) {
+        if (diagonolRightToLeft()) {
             gameover = true;
 //            printBoard();
-            System.out.println("Player two wins!");
+            System.out.println("Game over!");
         }
-        if (playerXWin()) {
+        if (diagonolLeftToRight()) {
             gameover = true;
 //            printBoard();
-            System.out.println("Player one wins!");
+            System.out.println("Game over!");
+        }
+        if (horizontal()) {
+            gameover = true;
+            System.out.println("Game over!");
+        }
+        if (vertical()) {
+            gameover = true;
+            System.out.println("Game over!");
         }
         if (isDraw()) {
             gameover = true;
@@ -196,24 +264,7 @@ public class Board {
 //
 //  --------------------------------------------  OLD CODE----------------------------------
 
-//    public boolean playerYWin() {
-//        boolean isLose = false;
-//        for (int i = 0; i < board.length; i++) {
-//            if ((board[0][i] == 'O') || (board[1][i] == 'O') || (board[2][i] == 'O') || (board[0][0] == 'O' && board[1][1] != 'O' && board[2][2] == 'O') ||
-//                    (board[2][0] == 'O' && board[1][1] == 'O' && board[0][2] == 'O')
-//
-//            ){
-//                isLose = true;
-//
-//            }
-//        }
-//            if(isLose) {
-//                return false;
-//            }
-//            return true;
-//
-//    }
-//}
+
 
 //    public boolean playerXWin() {
 //        for (int i = 0; i < board.length; i++) {
