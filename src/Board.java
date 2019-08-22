@@ -20,6 +20,7 @@ public class Board {
     }
 
 
+
     // Set/Reset the board back to all empty values.
     public void initializeBoard() {
         // Loop through rows
@@ -49,35 +50,41 @@ public class Board {
 
     // Player X
     public boolean placeMarkX(int row, int col) {
-
+    boolean placed = false;
         // Make sure that row and column are in bounds of the board.
         if ((row >= 0) && (row < 3)) {
             if ((col >= 0) && (col < 3)) {
-                if (board[row][col] == '.') {
+                if (board[row][col] == '.' && board[row][col] != 'X' && board[row][col] != 'O') {
                     board[row][col] = truePlayerMark;
-                    return true;
+                    placed = true;
+                } else {
+                    placed = false;
+                    System.out.println("There is already a piece there!");
                 }
             }
         }
 
-        return false;
+        return placed;
     }
 
     // Player 0 but should refactor to be in same code as the other one.
     public boolean placeMarkY(int row, int col) {
-
+        boolean placed = false;
         // Make sure that row and column are in bounds of the board.
         if ((row >= 0) && (row < 3)) {
             if ((col >= 0) && (col < 3)) {
-                if (board[row][col] == '.') {
+                if (board[row][col] == '.' && board[row][col] != 'X' && board[row][col] != 'O') {
                     board[row][col] = falsePlayerMark;
-                    return true;
+                    placed = true;
+                } else {
+                    placed = false;
+                    System.out.println("There is already a piece there!");
                 }
             }
         }
-
-        return false;
+        return placed;
     }
+
 
 
     public boolean playerYWin() {
@@ -161,7 +168,7 @@ public class Board {
     public boolean validateInput(char[] input) {
         boolean validInput;
         if ((input.length == 2) && (Character.isDigit(input[0]) && Character.isDigit(input[1]))) {
-            validInput = true;
+                validInput = true;
         } else {
             validInput = false;
         }
@@ -169,6 +176,7 @@ public class Board {
     }
 }
 
+//&& (input[0] <= 2) && (input[1] <= 2)
 
 
 
