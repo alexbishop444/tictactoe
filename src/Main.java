@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Tic Tac Toe!");
         System.out.println("Here's the current board:");
-        Board board = new Board();
+        Board board = new Board(6,6);
         Scanner scanner = new Scanner(System.in);
         boolean gameover;
         boolean turn = false;
