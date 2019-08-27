@@ -12,23 +12,25 @@ public class Board {
     boolean player;
     char blankChar = '.';
 
-    public Board() {
-        board = new char[3][3];
+    public Board(int size1, int size2) {
+        board = new char[size1][size2];
         truePlayerMark = 'X';
         falsePlayerMark = 'O';
         player = true; //false is X, 0 is True
         initializeBoard();
     }
 
-
+    public Integer calculate(Integer first, Integer second) {
+        return first + second;
+    }
 
     // Set/Reset the board back to all empty values.
     public void initializeBoard() {
         // Loop through rows
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < board.length; i++) {
 
             // Loop through columns
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < board.length; j++) {
                 board[i][j] = '.';
             }
         }
@@ -39,9 +41,9 @@ public class Board {
     public void printBoard() {
         System.out.println(" ");
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < board.length; i++) {
             System.out.print(" ");
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < board.length; j++) {
                 System.out.print(board[i][j] + "  ");
             }
             System.out.println();
@@ -53,8 +55,8 @@ public class Board {
     public boolean placeMarkX(int row, int col) {
     boolean placed = false;
         // Make sure that row and column are in bounds of the board.
-        if ((row >= 0) && (row < 3)) {
-            if ((col >= 0) && (col < 3)) {
+        if ((row >= 0) && (row < board.length)) {
+            if ((col >= 0) && (col < board.length)) {
                 if (board[row][col] == '.' && board[row][col] != 'X' && board[row][col] != 'O') {
                     board[row][col] = truePlayerMark;
                     placed = true;
@@ -72,8 +74,8 @@ public class Board {
     public boolean placeMarkY(int row, int col) {
         boolean placed = false;
         // Make sure that row and column are in bounds of the board.
-        if ((row >= 0) && (row < 3)) {
-            if ((col >= 0) && (col < 3)) {
+        if ((row >= 0) && (row < board.length)) {
+            if ((col >= 0) && (col < board.length)) {
                 if (board[row][col] == '.' && board[row][col] != 'X' && board[row][col] != 'O') {
                     board[row][col] = falsePlayerMark;
                     placed = true;
@@ -144,7 +146,7 @@ public class Board {
         return isDraw;
     }
 
-    private boolean horizontal() {
+    public boolean horizontal() {
         for(int i=0;i < board.length; i++) {
             if(IsAllEqual(board[i]))
                 return true;
@@ -152,7 +154,7 @@ public class Board {
         return false;
     }
 
-    private boolean diagonolLeftToRight() {
+    public boolean diagonolLeftToRight() {
         char[] array = new char[board.length];
         for(int i=0;i < board.length; i++) {
                 array[i] = board[i][i];
@@ -163,7 +165,7 @@ public class Board {
         return false;
     }
 
-    private boolean diagonolRightToLeft() {
+    public boolean diagonolRightToLeft() {
         char[] array = new char[board.length];
         int goHere = board.length -1;
         int start = -1;
@@ -177,11 +179,11 @@ public class Board {
         return false;
     }
 
-    private boolean vertical() {
+    public boolean vertical() {
         char[] array = new char[board.length];
         for(int i=0;i < board.length; i++) {
             for (int j = 0; j <board.length ; j++) {
-                array[i] = board[j][i];
+                array[j] = board[j][i];
             }
             if(IsAllEqual(array)) {
                 return true;
